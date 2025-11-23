@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – KNBHS Alumni Tournament</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png" alt="Tournament Logo"></a>
+
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="teams.html">TEAMS</a></li>
+                    <li><a href="players.html">PLAYERS</a></li>
+                    <li><a href="auction.html">AUCTION</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="#" id="logoutBtn">LOGOUT</a></li>
+
+                </ul>
+            </div>
+
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        <div class="text-box">
+            <h1>Welcome, <span class="username">Alumni</span></h1>
+            <p>Manage your profile, check your team, and participate in auctions and matches.</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Info -->
+    <section class="dashboard">
+        <div class="dashboard-container">
+            <div class="card">
+                <h3>Profile Information</h3>
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Batch:</strong> 2016</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+            </div>
+
+            <div class="card">
+                <h3>Your Team</h3>
+                <p>Team: <strong>Batch 2016 Warriors</strong></p>
+                <p>Role: <strong>Forward</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Auction Status</h3>
+                <p>Next Auction: <strong>15th Dec 2025</strong></p>
+                <p>Status: <strong>Registered</strong></p>
+                <a href="auction.html" class="hero-btn">Go to Auction</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <h4>About Tournament</h4>
+        <p>The KNBHS Alumni Football Tournament brings former students together through teamwork, passion, and
+            sportsmanship.</p>
+
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-youtube"></i>
+        </div>
+
+        <p>Designed With ❤️ for KNBHS Alumni</p>
+    </section>
+
+    <!-- JS for menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() { navLinks.style.right = "0"; }
+        function hideMenu() { navLinks.style.right = "-230px"; }
+    </script>
+
+    <script>
+        const loggedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+        if (!loggedUser) {
+            alert("You must login first!");
+            window.location.href = "login.html";
+        } else {
+            document.querySelector(".username").textContent = loggedUser.fullname;
+
+            // Profile Info
+            const profileCard = document.querySelector(".card:nth-child(1)");
+            profileCard.innerHTML = `
+      <h3>Profile Information</h3>
+      <p><strong>Name:</strong> ${loggedUser.fullname}</p>
+      <p><strong>Batch:</strong> ${loggedUser.batch}</p>
+      <p><strong>Email:</strong> ${loggedUser.email}</p>
+    `;
+
+            // Team Card (example logic)
+            const teamCard = document.querySelector(".card:nth-child(2)");
+            teamCard.innerHTML = `
+      <h3>Your Team</h3>
+      <p>Team: <strong>Batch ${loggedUser.batch} Warriors</strong></p>
+      <p>Role: <strong>Forward</strong></p>
+    `;
+        }
+    </script>
+    <script>
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (user) {
+            const nav = document.querySelector("nav");
+            const userNameSpan = document.createElement("span");
+            userNameSpan.textContent = `Welcome, ${user.fullname}`;
+            userNameSpan.style.color = "var(--white)";
+            userNameSpan.style.marginLeft = "20px";
+            nav.appendChild(userNameSpan);
+        }
+    </script>
+    <script>
+        const logoutBtn = document.getElementById("logoutBtn");
+        logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html";
+        });
+    </script>
+
+</body>
+
+</html>

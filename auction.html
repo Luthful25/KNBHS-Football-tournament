@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNBHS Alumni Player Auction</title>
+  <link rel="stylesheet" href="auction.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <section class="header">
+    <nav>
+      <a href="index.html"><img src="picture/logo.jpg" alt="Tournament Logo"></a>
+
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="teams.html">TEAMS</a></li>
+          <li><a href="players.html">PLAYERS</a></li>
+          <li><a href="auction.html" class="active">AUCTION</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+        </ul>
+      </div>
+
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>PLAYER AUCTION</h1>
+      <p>The official player auction where teams build their dream squad fairly and competitively.</p>
+    </div>
+  </section>
+
+  <!-- Auction Section -->
+  <section class="auction">
+    <h1>How the Auction Works</h1>
+    <p>Transparency, excitement, and strategic bidding make our player auction a highlight of the tournament.</p>
+
+    <div class="row">
+      <div class="auction-card">
+        <img src="picture/bid.png" alt="Open Auction">
+        <h3>Open Auction</h3>
+        <p>Players are selected through a competitive and transparent auction process.</p>
+        <a href="action.html" class="hero-btn">Start Auction</a>
+      </div>
+
+      <div class="auction-card">
+        <img src="picture/draft.png" alt="Player Categories">
+        <h3>Player Categories</h3>
+        <p>Players are grouped into categories based on skills, experience, and past performance.</p>
+      <a href="action.html" class="hero-btn">Player Categories</a>
+      </div>
+
+      <div class="auction-card">
+        <img src="picture/budget.jpg" alt="Team Budgets">
+        <h3>Team Budgets</h3>
+        <p>Each team receives a fixed budget to bid for players and build their ultimate squad.</p>
+      <a href="action.html" class="hero-btn">Team Budgets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer">
+    <h4>About Tournament</h4>
+    <p>The KNBHS Alumni Football Tournament brings former students together through teamwork, passion, and sportsmanship.</p>
+
+    <div class="icons">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-youtube"></i>
+    </div>
+
+    <p>Designed With ❤️ for KNBHS Alumni</p>
+  </section>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-230px";
+    }
+  </script>
+  <!---
+<script>
+  // Check if user is logged in
+  const loggedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+  if(!loggedUser){
+    // Redirect to login if not logged in
+    window.location.href = "login.html";
+  } else {
+    console.log("Logged in as:", loggedUser.fullname);
+  }
+</script> -->
+<script>
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  if(user){
+    const nav = document.querySelector("nav");
+    const userNameSpan = document.createElement("span");
+    userNameSpan.textContent = `Welcome, ${user.fullname}`;
+    userNameSpan.style.color = "var(--white)";
+    userNameSpan.style.marginLeft = "20px";
+    nav.appendChild(userNameSpan);
+  }
+</script>
+<script>
+  const logoutBtn = document.getElementById("logoutBtn");
+  logoutBtn.addEventListener("click", function(){
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+  });
+</script>
+
+</body>
+</html>

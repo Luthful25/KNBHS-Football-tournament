@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNBHS Alumni Teams</title>
+  <link rel="stylesheet" href="teams.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <section class="header">
+    <nav>
+      <a href="index.html"><img src="picture/logo.jpg" alt="Tournament Logo"></a>
+
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="teams.html" class="active">TEAMS</a></li>
+          <li><a href="players.html">PLAYERS</a></li>
+          <li><a href="auction.html">AUCTION</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          
+
+        </ul>
+      </div>
+
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>ALUMNI TEAMS</h1>
+      <p>Explore the teams formed by KNBHS alumni from different batches, united by passion and teamwork.</p>
+    </div>
+  </section>
+
+  <!-- Teams Section -->
+  <section class="teams">
+    <h1>Participating Teams</h1>
+    <p>Meet the champions and contenders of this year’s alumni football tournament.</p>
+
+    <div class="row">
+      <div class="team-card">
+        <img src="picture/vv.jpg" alt="Batch 2014">
+        <h3>Vintage Victors</h3>
+        <p>Strong bond and exceptional spirit make them a tough competitor.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="picture/RM.jpg">
+        <h3>Retro Warrios</h3>
+        <p>Disciplined, skilled, and united in pursuit of victory.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="picture/TN.jpg" alt="Batch 2018">
+        <h3>Team Nostalgia</h3>
+        <p>Young, energetic, and hungry to dominate the tournament.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="picture/TL.jpg" alt="Batch 2020">
+        <h3>Team Legends</h3>
+        <p>The rising stars with talent and determination on their side.</p>
+      </div>
+      <div class="team-card">
+        <img src="picture/AS.jpg">
+        <h3>Alumni Stars</h3>
+        <p>The rising stars with talent and determination on their side.</p>
+      </div>
+      <div class="team-card">
+        <img src="picture/TL1.jpg" alt="Batch 2020">
+        <h3>Team Legacy</h3>
+        <p>The rising stars with talent and determination on their side.</p>
+      </div>
+      <div class="team-card">
+        <img src="picture/GG.jpg" alt="Batch 2020">
+        <h3>Golden Generation</h3>
+        <p>The rising stars with talent and determination on their side.</p>
+      </div>
+      <div class="team-card">
+        <img src="picture/RR.jpg" alt="Batch 2020">
+        <h3>Reunion Rovers</h3>
+        <p>The rising stars with talent and determination on their side.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer">
+    <h4>About Tournament</h4>
+    <p>The KNBHS Alumni Football Tournament brings former students together through teamwork, passion, and sportsmanship.</p>
+
+    <div class="icons">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-youtube"></i>
+    </div>
+
+    <p>Designed With ❤️ for KNBHS Alumni</p>
+  </section>
+
+  <!-- JavaScript for mobile menu -->
+  <script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-230px";
+    }
+  </script>
+<!---
+<script>
+  // Check if user is logged in
+  const loggedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+  if(!loggedUser){
+    // Redirect to login if not logged in
+    window.location.href = "login.html";
+  } else {
+    console.log("Logged in as:", loggedUser.fullname);
+  }
+</script>   --->
+<script>
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  if(user){
+    const nav = document.querySelector("nav");
+    const userNameSpan = document.createElement("span");
+    userNameSpan.textContent = `Welcome, ${user.fullname}`;
+    userNameSpan.style.color = "var(--white)";
+    userNameSpan.style.marginLeft = "20px";
+    nav.appendChild(userNameSpan);
+  }
+</script>
+<script>
+  const logoutBtn = document.getElementById("logoutBtn");
+  logoutBtn.addEventListener("click", function(){
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+  });
+</script>
+
+</body>
+</html>

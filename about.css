@@ -1,0 +1,225 @@
+:root{
+  --theme: #0b8457;
+  --accent: rgba(11,132,87,0.08);
+  --white: #fff;
+  --muted: #777;
+  --dark: #04121e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* Header / hero */
+.header {
+  min-height: 60vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(4,9,30,0.65), rgba(4,9,30,0.65)), url(picture/about.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  color: var(--white);
+}
+
+nav {
+  display: flex;
+  padding: 2% 6%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 150px;
+}
+
+.nav-links {
+  flex: 1;
+  text-align: right;
+}
+
+.nav-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+}
+
+.nav-links ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nav-links ul li::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--theme);
+  display: block;
+  margin: 6px auto 0;
+  transition: 0.35s;
+}
+.nav-links ul li:hover::after {
+  width: 100%;
+}
+
+
+/* Hero text */
+.text-box {
+  width: 90%;
+  color: var(--white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.text-box h1 {
+  font-size: 48px;
+}
+.text-box p {
+  margin-top: 12px;
+  font-size: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* About Section */
+.about-us {
+  width: 80%;
+  margin: 80px auto;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.about-col {
+  flex-basis: 48%;
+}
+.about-col img {
+  width: 100%;
+  border-radius: 8px;
+}
+.about-col h1 {
+  margin-bottom: 12px;
+}
+.about-col p {
+  font-size: 14px;
+  color: #222;
+  line-height: 22px;
+  margin-bottom: 12px;
+}
+/* ================================
+   ORGANIZING COMMITTEE SECTION
+================================ */
+.owners {
+    width: 85%;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.owners h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0b8457; /* theme */
+}
+
+.owners p {
+    color: #333;
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+
+/* Owners row */
+.owners .row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Owner card design */
+.owners-col {
+    flex: 1 1 calc(45% - 20px);
+    max-width: 420px;
+    background: rgba(11,132,87,0.08);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+/* Profile image */
+.owners-col img {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0b8457;
+    transition: .3s;
+}
+
+/* Name and details */
+.owners-col h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #04121e;
+}
+
+.owners-col p {
+    color: #444;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Hover Effect */
+.owners-col:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 150, 100, 0.15);
+}
+
+.owners-col:hover img {
+    transform: scale(1.08);
+}
+
+/* ================================
+   FOOTER
+/* Footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 35px 0;
+  background: #5e3636;              /* dark background */
+  color: #f1f1f1;                /* light text */
+}
+
+.footer h4 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  color: #fff;                   /* white heading */
+}
+
+.icons i {
+  flex: 1;
+  color: #00e0a8;                /* neon aqua (theme vibe) */
+  margin: 0 12px;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.3s ease;
+}
+
+/* hover glow effect */
+.icons i:hover {
+  color: #44ffd1;
+  transform: scale(1.15);
+  text-shadow: 0 0 10px rgba(68, 255, 209, 0.6);
+}
+

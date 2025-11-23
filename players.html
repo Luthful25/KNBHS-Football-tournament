@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KNBHS Alumni Players</title>
+
+  <link rel="stylesheet" href="players.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <section class="header">
+    <nav>
+      <a href="index.html"><img src="picture/logo.jpg" alt="Tournament Logo"></a>
+
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="teams.html">TEAMS</a></li>
+          <li><a href="players.html" class="active">PLAYERS</a></li>
+          <li><a href="auction.html">AUCTION</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          
+        </ul>
+      </div>
+
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>ALUMNI PLAYERS</h1>
+      <p>Meet the skilled players participating in this year's KNBHS Alumni Football Tournament.</p>
+    </div>
+  </section>
+
+  <!-- Controls: Search + Filters -->
+  <div class="controls">
+    <div class="controls-left">
+      <div class="search-wrap">
+        <i class="fa fa-search"></i>
+        <input id="searchInput" type="search" placeholder="Search by name..." />
+      </div>
+
+      <div class="filters">
+        <select id="batchFilter">
+          <option value="all">All Batches</option>
+        </select>
+
+        <select id="positionFilter">
+          <option value="all">All Positions</option>
+        </select>
+
+        <button id="resetBtn" class="reset-btn">Reset</button>
+      </div>
+    </div>
+
+    <div class="result-count">
+      Showing <strong id="countNumber">0</strong> players
+    </div>
+  </div>
+
+  <!-- Players Section -->
+  <section class="players">
+    <h1>All Players</h1>
+    <p>From experienced veterans to emerging talents, these players bring their best to the field.</p>
+
+    <div class="row" id="playersGrid">
+
+      <!-- All Players (Clean & Unique List) -->
+      <div class="player-card" data-name="Md. Rahim" data-batch="2014" data-position="Forward">
+        <img src="images/player1.jpg" alt="Md. Rahim">
+        <h3>Md. Rahim</h3>
+        <p>Batch 2014 | Forward</p>
+      </div>
+
+      <div class="player-card" data-name="Abdul Karim" data-batch="2016" data-position="Midfielder">
+        <img src="images/player2.jpg" alt="Abdul Karim">
+        <h3>Abdul Karim</h3>
+        <p>Batch 2016 | Midfielder</p>
+      </div>
+
+      <div class="player-card" data-name="Shafiq Ahmed" data-batch="2018" data-position="Defender">
+        <img src="images/player3.jpg" alt="Shafiq Ahmed">
+        <h3>Shafiq Ahmed</h3>
+        <p>Batch 2018 | Defender</p>
+      </div>
+
+      <div class="player-card" data-name="Rana Hossain" data-batch="2020" data-position="Goalkeeper">
+        <img src="images/player4.jpg" alt="Rana Hossain">
+        <h3>Rana Hossain</h3>
+        <p>Batch 2020 | Goalkeeper</p>
+      </div>
+
+      <div class="player-card" data-name="Tanvir Islam" data-batch="2014" data-position="Midfielder">
+        <img src="images/player5.jpg" alt="Tanvir Islam">
+        <h3>Tanvir Islam</h3>
+        <p>Batch 2014 | Midfielder</p>
+      </div>
+
+      <div class="player-card" data-name="Diba Rahman" data-batch="2016" data-position="Forward">
+        <img src="images/player6.jpg" alt="Diba Rahman">
+        <h3>Diba Rahman</h3>
+        <p>Batch 2016 | Forward</p>
+      </div>
+
+    </div>
+
+    <div id="noResults" class="no-results" style="display:none;">
+      No players match your search or filter.
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer">
+    <h4>About Tournament</h4>
+    <p>The KNBHS Alumni Football Tournament brings former students together through teamwork, passion, and sportsmanship.</p>
+
+    <div class="icons">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-youtube"></i>
+    </div>
+
+    <p>Designed With ❤️ for KNBHS Alumni</p>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu(){ navLinks.style.right = "0"; }
+    function hideMenu(){ navLinks.style.right = "-230px"; }
+
+    (function(){
+      const grid = document.getElementById('playersGrid');
+      const cards = Array.from(grid.querySelectorAll('.player-card'));
+      const searchInput = document.getElementById('searchInput');
+      const batchFilter = document.getElementById('batchFilter');
+      const positionFilter = document.getElementById('positionFilter');
+      const resetBtn = document.getElementById('resetBtn');
+      const noResults = document.getElementById('noResults');
+      const countNumber = document.getElementById('countNumber');
+
+      const norm = s => (s || '').toLowerCase().trim();
+
+      const batches = new Set();
+      const positions = new Set();
+
+      cards.forEach(c => {
+        batches.add(c.dataset.batch);
+        positions.add(c.dataset.position);
+      });
+
+      [...batches].sort().forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        batchFilter.appendChild(opt);
+      });
+
+      [...positions].sort().forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = p;
+        positionFilter.appendChild(opt);
+      });
+
+      function applyFilter(){
+        const q = norm(searchInput.value);
+        const b = batchFilter.value;
+        const p = positionFilter.value;
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const matchName = norm(card.dataset.name).includes(q);
+          const matchBatch = (b === "all") || (card.dataset.batch === b);
+          const matchPos = (p === "all") || (card.dataset.position === p);
+
+          const show = matchName && matchBatch && matchPos;
+
+          card.style.display = show ? "" : "none";
+          if(show) visibleCount++;
+        });
+
+        noResults.style.display = visibleCount === 0 ? "" : "none";
+        countNumber.textContent = visibleCount;
+      }
+
+      searchInput.addEventListener('input', applyFilter);
+      batchFilter.addEventListener('change', applyFilter);
+      positionFilter.addEventListener('change', applyFilter);
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = "";
+        batchFilter.value = "all";
+        positionFilter.value = "all";
+        applyFilter();
+      });
+
+      applyFilter();
+    })();
+
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    if(user){
+      const nav = document.querySelector("nav");
+      const span = document.createElement("span");
+      span.textContent = `Welcome, ${user.fullname}`;
+      span.style.color = "white";
+      span.style.marginLeft = "20px";
+      nav.appendChild(span);
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", function(e){
+      e.preventDefault();
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
+

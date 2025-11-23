@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register – KNBHS Alumni Tournament</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png" alt="Tournament Logo"></a>
+
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="teams.html">TEAMS</a></li>
+                    <li><a href="players.html">PLAYERS</a></li>
+                    <li><a href="auction.html">AUCTION</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                </ul>
+            </div>
+
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        <div class="text-box">
+            <h1>Register</h1>
+            <p>Create your account to participate in the KNBHS Alumni Football Tournament.</p>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="register-section">
+        <div class="register-container">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="batch" placeholder="Batch (e.g., 2016)" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit" class="hero-btn">Register</button>
+            </form>
+
+            <p>Already have an account? <a href="login.html">Login Here</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <h4>About Tournament</h4>
+        <p>The KNBHS Alumni Football Tournament brings former students together through teamwork, passion, and
+            sportsmanship.</p>
+
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-youtube"></i>
+        </div>
+
+        <p>Designed With ❤️ for KNBHS Alumni</p>
+    </section>
+
+    <!-- JS for mobile menu -->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() { navLinks.style.right = "0"; }
+        function hideMenu() { navLinks.style.right = "-230px"; }
+    </script>
+    <script>
+  const registerForm = document.getElementById('registerForm');
+
+  registerForm.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const fullname = registerForm.fullname.value;
+    const batch = registerForm.batch.value;
+    const email = registerForm.email.value;
+    const password = registerForm.password.value;
+    const confirmPassword = registerForm['confirm-password'].value;
+
+    if(password !== confirmPassword){
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Save user info to localStorage
+    const user = { fullname, batch, email, password };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    alert("Registration successful!");
+    window.location.href = "dashboard.html"; // Redirect to dashboard
+  });
+</script>
+</body>
+
+</html>
